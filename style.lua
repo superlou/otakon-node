@@ -35,7 +35,7 @@ local right_style = {
         font_bold = font_bold,
         color = "ffffff",
     },
-    player_bg_mask = "img_right_mask.png",
+    player_bg_mask = nil,
     margin = {80, 50, 80, 120},
     heading_y = 100,
     message_y = 180,

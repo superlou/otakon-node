@@ -11,7 +11,7 @@ local TopicPlayer = require "topic_player"
 local tw = require "tween"
 local ServiceIndicator = require "service_indicator"
 
-local right_bg = resource.load_image "img_right_bg_wide3.png"
+local right_bg = resource.load_image "img_right_bg_wide4.png"
 local ticker_left_crop = resource.load_image "img_ticker_left_crop.png"
 local ticker_right_crop = resource.load_image "img_ticker_right_crop.png"
 
@@ -23,8 +23,8 @@ local style = require "style"
 local left_style = style["left_style"]
 local right_style = style["right_style"]
 
-local topic_left = TopicPlayer(694, 964, left_style)
-local topic_right = TopicPlayer(1332, 964, right_style)
+local topic_left = TopicPlayer(640, 964, left_style)
+local topic_right = TopicPlayer(1280, 964, right_style)
 
 util.data_mapper {
     ["clock/update"] = function(data)
@@ -53,10 +53,10 @@ function node.render()
         topic_left:draw()
     end)
 
-    right_bg:draw(575, 0, 575 + 1345, 1080)
+    right_bg:draw(640, 0, 640 + 1280, 1080)
     draw_glass()
 
-    offset(588, 0, function()
+    offset(640, 0, function()
         topic_right:draw()
     end)
 
