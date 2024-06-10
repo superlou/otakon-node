@@ -11,7 +11,7 @@ local TopicPlayer = require "topic_player"
 local tw = require "tween"
 local ServiceIndicator = require "service_indicator"
 
-local right_bg = resource.load_image "img_right_bg_wide4.png"
+local main_bg = resource.load_image "img_right_bg_wide5.png"
 local ticker_left_crop = resource.load_image "img_ticker_left_crop.png"
 local ticker_right_crop = resource.load_image "img_ticker_right_crop.png"
 
@@ -20,11 +20,8 @@ local clock = Clock:new(200, 96)
 local service_indicator = ServiceIndicator()
 
 local style = require "style"
-local left_style = style["left_style"]
-local right_style = style["right_style"]
-
-local topic_left = TopicPlayer(640, 964, left_style)
-local topic_right = TopicPlayer(1280, 964, right_style)
+local topic_sidebar = TopicPlayer(640, 964, style["sidebar_style"])
+local topic_main = TopicPlayer(1280, 964, style["main_style"])
 
 util.data_mapper {
     ["clock/update"] = function(data)
@@ -40,8 +37,8 @@ util.data_mapper {
 json_watch("config.json", function(config)
     ticker:set_speed(config.ticker_speed)
     ticker:set_msgs_from_config(config)
-    topic_left:set_topics_from_config(config["left_topic_player"])
-    topic_right:set_topics_from_config(config["right_topic_player"])
+    topic_sidebar:set_topics_from_config(config["left_topic_player"])
+    topic_main:set_topics_from_config(config["right_topic_player"])
 end)
 
 function node.render()
@@ -49,15 +46,14 @@ function node.render()
 
     gl.clear(1, 1, 1, 1)
 
-    offset(0, 0, function()
-        topic_left:draw()
+    offset(1280, 0, function()
+        topic_sidebar:draw()
     end)
 
-    right_bg:draw(640, 0, 640 + 1280, 1080)
-    draw_glass()
+    main_bg:draw(0, 0, 1280, 1080)
 
-    offset(640, 0, function()
-        topic_right:draw()
+    offset(0, 0, function()
+        topic_main:draw()
     end)
 
     ticker:draw()

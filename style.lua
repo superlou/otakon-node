@@ -1,7 +1,7 @@
 local font = resource.load_font "font_Lato-Regular.ttf"
 local font_bold = resource.load_font "font_Lato-Bold.ttf"
 
-local left_style = {
+local sidebar_style = {
     heading = {
         style = "underline",
         font = font,
@@ -20,15 +20,15 @@ local left_style = {
     message_y = 180,
 }
 
-local right_style = {
+local main_style = {
     heading = {
         style = "box",
         font = font,
-        text_color = "ffffff",
+        text_color = "61491c",
         font_size = 64,
         padding = 50,
-        bg_color = "e91e63",
-        shadow_color = "bb114b",
+        bg_color = "ffc049",
+        shadow_color = "785a22",
     },
     text = {
         font = font,
@@ -36,12 +36,12 @@ local right_style = {
         color = "ffffff",
     },
     player_bg_mask = nil,
-    margin = {80, 50, 80, 120},
+    margin = {80, 60, 80, 60},
     heading_y = 100,
     message_y = 180,
 }
 
 return {
-    left_style = left_style,
-    right_style = right_style,
+    sidebar_style = sidebar_style,
+    main_style = main_style,
 }
