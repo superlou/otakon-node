@@ -23,12 +23,12 @@ class Guidebook:
         return response.json()
 
     def get_guides(self):
-        URL = "https://builder.guidebook.com/open-api/v1/guides/"
+        URL = "https://builder.guidebook.com/open-api/v1.1/guides/"
         rsp = self.get_json(URL)
         return rsp
     
     def get_sessions(self, guide_id=None, ordering="start_time"):
-        url = "https://builder.guidebook.com/open-api/v1/sessions/"
+        url = "https://builder.guidebook.com/open-api/v1.1/sessions/"
         params = {
             "guide": guide_id,
             "ordering": ordering,
@@ -47,7 +47,7 @@ class Guidebook:
         return sessions
     
     def get_locations(self, guide_id=None):
-        url = "https://builder.guidebook.com/open-api/v1/locations/"
+        url = "https://builder.guidebook.com/open-api/v1.1/locations/"
         params = {
             "guide": guide_id
         }
