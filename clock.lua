@@ -3,8 +3,8 @@ require "color_util"
 
 local Clock = class("Clock")
 
-local font = resource.load_font "font_Lato-Regular.ttf"
-local font_bold = resource.load_font "font_Lato-Bold.ttf"
+local font = resource.load_font "font_Poppins-Bold.ttf"
+local font_bold = resource.load_font "font_Poppins-BlackItalic.ttf"
 local debug_bg = create_color_resource_hex("ffffff", 0.4)
 local date_bg = resource.load_image("img_date_bg.png")
 local date_color = {hex2rgb("#e91e63")}

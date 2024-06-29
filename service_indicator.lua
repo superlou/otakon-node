@@ -1,6 +1,6 @@
 local class = require "middleclass"
 local tw = require "tween"
-local font = resource.load_font "font_Lato-Regular.ttf"
+local font = resource.load_font "font_Poppins-Regular.ttf"
 
 local ServiceIndicator = class("ServiceIndicator")
 
