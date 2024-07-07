@@ -14,6 +14,8 @@ local white_img = resource.create_colored_texture(1, 1, 1, 1)
 local green_img = create_color_resource_hex("#2fc480")
 local red_img = create_color_resource_hex("#d34848")
 
+local session_list_item_bg = resource.load_image("img_event_row_bg.png")
+
 function SessionListTopic:initialize(w, h, style, duration, heading, text)
     Topic.initialize(self, w, h, style, duration)
     self.heading = heading
@@ -133,6 +135,8 @@ function SessionListItem:initialize(name, locations, start_hhmm, start_ampm,
 end
 
 function SessionListItem:draw()
+    session_list_item_bg:draw(15, -15, 15 + 1240, -15 + 118 + 1, self.alpha)
+
     local r, g, b = unpack(self.text_color)
 
     self:draw_time()

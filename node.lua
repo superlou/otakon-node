@@ -11,7 +11,7 @@ local TopicPlayer = require "topic_player"
 local tw = require "tween"
 local ServiceIndicator = require "service_indicator"
 
-local main_bg = resource.load_image "img_right_bg_wide5.png"
+local main_bg = resource.load_image "img_right_bg_wide6.png"
 local ticker_left_crop = resource.load_image "img_ticker_left_crop.png"
 local ticker_right_crop = resource.load_image "img_ticker_right_crop.png"
 
@@ -50,7 +50,7 @@ function node.render()
         topic_sidebar:draw()
     end)
 
-    main_bg:draw(0, 0, 1280, 1080)
+    main_bg:draw(0, 0, 1280, 964)
 
     offset(0, 0, function()
         topic_main:draw()
