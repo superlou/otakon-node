@@ -12,8 +12,8 @@ local tw = require "tween"
 local ServiceIndicator = require "service_indicator"
 
 local main_bg = resource.load_image "img_right_bg_wide6.png"
-local ticker_left_crop = resource.load_image "img_ticker_left_crop.png"
-local ticker_right_crop = resource.load_image "img_ticker_right_crop.png"
+local ticker_left_crop = resource.load_image "img_ticker_left_crop2.png"
+local ticker_right_crop = resource.load_image "img_ticker_right_crop2.png"
 
 local ticker = Ticker:new(0, HEIGHT - 116, WIDTH, 116)
 local clock = Clock:new(200, 96)
@@ -58,8 +58,8 @@ function node.render()
 
     ticker:draw()
 
-    ticker_left_crop:draw(0, 964, 47, 964 + 116)
-    ticker_right_crop:draw(1692, 964, 1692 + 229, 964 + 117)
+    ticker_left_crop:draw(0, 964, 85, 964 + 116)
+    ticker_right_crop:draw(1697, 964, 1697 + 223, 964 + 116)
 
     offset(1710, 972, function()
         clock:draw()

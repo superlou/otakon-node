@@ -14,7 +14,7 @@ end
 function Ticker:initialize(x, y, w, h)
     self.x, self.y = x, y
     self.w, self.h = w, h
-    self.bg = create_color_resource_hex("241f31")
+    self.bg = create_color_resource_hex("15141a")
     self.speed = 1
     self.msgs = {}
     self.ticker_msgs = {}
