@@ -21,7 +21,7 @@ function SessionListTopic:initialize(w, h, style, duration, heading, text)
     self.heading = heading
     self.text = text
     self.text_color = {hex2rgb(self.style.text.color)}
-    self.font_size = 40
+    self.font_size = 36
 
     self.heading = Heading(heading, style.heading)
     
@@ -36,7 +36,7 @@ function SessionListTopic:initialize(w, h, style, duration, heading, text)
         end)
     end
 
-    self.sessions_per_page = 5  -- todo This should be based on height and session size
+    self.sessions_per_page = 6  -- todo This should be based on height and session size
     self.sessions_by_page = split_every_n(self.sessions_data, self.sessions_per_page)
     self.session_items = {}     -- the session drawing objects
 
@@ -93,7 +93,7 @@ function SessionListTopic:draw()
     end)
 
     for i, session_item in ipairs(self.session_items) do
-        offset(0, self.style.message_y + (i - 1) * 140 + 60, function()
+        offset(0, self.style.message_y + (i - 1) * 120 + 60, function()
             session_item:draw()
         end)
     end
@@ -117,12 +117,12 @@ function SessionListItem:initialize(name, locations, start_hhmm, start_ampm,
     end
 
     self.text_color = {hex2rgb(self.style.text.color)}
-    self.font_size = 50
+    self.font_size = 40
     self.font = self.style.text.font
     self.font_bold = self.style.text.font_bold
 
     -- Calculations to right align time text
-    self.date_w = 130
+    self.date_w = 104
     self.start_hhmm_x = self.margin[4] + self.date_w - self.font:width(self.start_hhmm, self.font_size)
     self.start_ampm_x = self.margin[4] + self.date_w - self.font:width(self.start_ampm, self.font_size * 0.8)
 
@@ -135,13 +135,13 @@ function SessionListItem:initialize(name, locations, start_hhmm, start_ampm,
 end
 
 function SessionListItem:draw()
-    session_list_item_bg:draw(15, -15, 15 + 1240, -15 + 118 + 1, self.alpha)
+    session_list_item_bg:draw(35, -15, 35 + 1210, -15 + 100, self.alpha)
 
     local r, g, b = unpack(self.text_color)
 
     self:draw_time()
 
-    local name_x = self.margin[4] + self.date_w + 28
+    local name_x = self.margin[4] + self.date_w + 10
     local name_w = self.w - name_x - self.margin[2]
 
     draw_text_in_window(
@@ -153,7 +153,7 @@ function SessionListItem:draw()
 
     if #self.locations > 0 then
         self.font_bold:write(
-            self.margin[4] + self.date_w + 31, 61, self.locations[1], self.font_size * 0.55,
+            self.margin[4] + self.date_w + 14, 50, self.locations[1], self.font_size * 0.55,
             r, g, b, self.alpha
         )
     end
@@ -168,12 +168,12 @@ function SessionListItem:draw_time()
     )
 
     self.font:write(
-        self.start_ampm_x, 52, self.start_ampm, self.font_size * 0.8,
+        self.start_ampm_x, 43, self.start_ampm, self.font_size * 0.8,
         r, g, b, self.alpha
     )
 
-    local bar_y = 50
-    local bar_h = 4
+    local bar_y = 42
+    local bar_h = 3
     local bar_w = self.date_w
 
     local fill_img = green_img

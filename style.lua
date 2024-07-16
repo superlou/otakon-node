@@ -41,7 +41,7 @@ local main_style = {
         color = "ffffff",
     },
     player_bg_mask = nil,
-    margin = {80, 60, 80, 60},
+    margin = {80, 50, 80, 50},
     heading_y = 100,
     message_y = 180,
 }
