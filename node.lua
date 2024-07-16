@@ -14,6 +14,7 @@ local ServiceIndicator = require "service_indicator"
 local main_bg = resource.load_image "img_right_bg_wide6.png"
 local ticker_left_crop = resource.load_image "img_ticker_left_crop2.png"
 local ticker_right_crop = resource.load_image "img_ticker_right_crop2.png"
+local ticker_right_triangle = resource.load_image "img_ticker_right_triangle.png"
 
 local ticker = Ticker:new(0, HEIGHT - 116, WIDTH, 116)
 local clock = Clock:new(200, 96)
@@ -41,7 +42,10 @@ json_watch("config.json", function(config)
     topic_main:set_topics_from_config(config["right_topic_player"])
 end)
 
+local t = 0
+
 function node.render()
+    t = t + 1 / 60
     tw:update(1 / 60)
 
     gl.clear(1, 1, 1, 1)
@@ -60,6 +64,12 @@ function node.render()
 
     ticker_left_crop:draw(0, 964, 85, 964 + 116)
     ticker_right_crop:draw(1697, 964, 1697 + 223, 964 + 116)
+
+    gl.pushMatrix()
+    gl.translate(1723 + 89/2, 970 + 87/2)
+    gl.rotate(18 * math.sin(2 * 3.141 * 0.05 * t), 0, 0, 1)
+    ticker_right_triangle:draw(-89/2, -89/2, 89/2, 87/2)
+    gl.popMatrix()
 
     offset(1710, 972, function()
         clock:draw()
