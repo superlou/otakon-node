@@ -3,9 +3,6 @@
     "permissions": {
         "network": "Needs to access Guidebook API"
     },
-    "platforms": [
-        "pi/epoch-1", "pi/epoch-2"
-    ],
     "scratch_mount": "SCRATCH",
     "options": [
         {
