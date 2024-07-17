@@ -62,8 +62,8 @@ function node.render()
 
     ticker:draw()
 
-    ticker_left_crop:draw(0, 964, 85, 964 + 116)
-    ticker_right_crop:draw(1697, 964, 1697 + 223, 964 + 116)
+    ticker_left_crop:draw(0, 964, 122, 964 + 116)
+    ticker_right_crop:draw(1644, 964, 1644 + 276, 964 + 116)
 
     gl.pushMatrix()
     gl.translate(1723 + 89/2, 970 + 87/2)
