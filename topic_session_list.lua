@@ -80,7 +80,9 @@ function SessionListTopic:load_page()
         -- Need to exit the current page's sessions and load next ones
         tw:timer(self.duration + 0.5):on_done(function()
             self:load_page()
-            self.pager:advance()
+            if self.pager then
+                self.pager:advance()
+            end
         end)
     else
         -- No more session pages to show
