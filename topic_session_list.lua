@@ -51,7 +51,9 @@ function SessionListTopic:initialize(w, h, style, duration, heading, text)
         self:load_page()
     end
 
-    if #self.sessions_by_page > 1 then
+    -- todo I don't know why the length of the table is one less than expected
+    -- Really only want pager if there is more than 1 page.
+    if #self.sessions_by_page > 0 then
         -- todo I don't know why the following needs "+ 1"
         self.pager = Pager(w, #self.sessions_by_page + 1)
     else
