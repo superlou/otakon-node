@@ -21,8 +21,8 @@ local sidebar_style = {
         color = "333195",
     },
     margin = {70, 70, 70, 70},
-    heading_y = 100,
-    message_y = 180,
+    heading_y = 80,
+    message_y = 160,
 }
 
 local main_style = {
@@ -42,8 +42,8 @@ local main_style = {
     },
     player_bg_mask = nil,
     margin = {80, 50, 80, 50},
-    heading_y = 100,
-    message_y = 180,
+    heading_y = 80,
+    message_y = 160,
 }
 
 return {

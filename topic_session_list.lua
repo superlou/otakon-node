@@ -2,6 +2,7 @@ local class = require "middleclass"
 local Topic = require "topic"
 local tw = require "tween"
 local json = require "json"
+local Pager = require "pager"
 require "text_util"
 require "color_util"
 require "file_util"
@@ -49,6 +50,13 @@ function SessionListTopic:initialize(w, h, style, duration, heading, text)
     else
         self:load_page()
     end
+
+    if #self.sessions_by_page > 1 then
+        -- todo I don't know why the following needs "+ 1"
+        self.pager = Pager(w, #self.sessions_by_page + 1)
+    else
+        self.pager = nil
+    end
 end
 
 function SessionListTopic:load_page()
@@ -72,6 +80,7 @@ function SessionListTopic:load_page()
         -- Need to exit the current page's sessions and load next ones
         tw:timer(self.duration + 0.5):on_done(function()
             self:load_page()
+            self.pager:advance()
         end)
     else
         -- No more session pages to show
@@ -95,6 +104,12 @@ function SessionListTopic:draw()
     for i, session_item in ipairs(self.session_items) do
         offset(0, self.style.message_y + (i - 1) * 120 + 60, function()
             session_item:draw()
+        end)
+    end
+
+    if self.pager then
+        offset(0, 922, function()
+            self.pager:draw()
         end)
     end
 end
