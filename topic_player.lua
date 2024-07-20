@@ -59,14 +59,16 @@ function TopicPlayer:create_topic(topic_config)
             self.w, self.h, self.style,
             topic_config.duration,
             topic_config.heading,
-            topic_config.message
+            topic_config.message,
+            topic_config.media
         )
     elseif msg:startswith("!session-brief") then
         return SessionBriefTopic:new(
             self.w, self.h, self.style,
             topic_config.duration,
             topic_config.heading,
-            topic_config.message
+            topic_config.message,
+            topic_config.media
         )
     end
 

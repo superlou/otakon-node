@@ -34,7 +34,7 @@
         "device":"",
         "duration": 5,
         "heading":"Today",
-        "media":{"asset_id":"img_no_media.png","asset_name":"img_no_media.png","filename":"img_no_media.png","metadata":{},"tags":[],"type":"image"},
+        "media": {},
         "message":"!session-brief\ndata:data_sessions_all_day.json"
     }, {
         "device":"",
@@ -63,7 +63,14 @@
         "device": "",
         "duration": 5,
         "heading": "Happening Now",
-        "media": {},
+        "media": {
+            "asset_id": 1245,
+            "asset_name":"test-asset-230fa9420ff9c02da9320-street.png",
+            "filename":"street.png",
+            "metadata":{"format": "png", "height": 964, "width": 1280},
+            "tags":[],
+            "type":"image"
+        },
         "message": "!session-list\ndata:data_sessions_now.json"
     }, {
         "device": "",

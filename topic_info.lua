@@ -33,9 +33,7 @@ function InfoTopic:initialize(w, h, style, duration, heading, text, media)
 
     if style.player_bg_mask then
         self.mask = resource.load_image(style.player_bg_mask)
-    else
-        self.mask = nil
-    end    
+    end
 
     self.style = style
     self.margin = self.style.margin
