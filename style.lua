@@ -23,6 +23,9 @@ local sidebar_style = {
     margin = {70, 70, 70, 70},
     heading_y = 80,
     message_y = 160,
+    session_list = {
+        item_bg_img = nil
+    },
 }
 
 local main_style = {
@@ -44,6 +47,9 @@ local main_style = {
     margin = {80, 50, 80, 50},
     heading_y = 80,
     message_y = 160,
+    session_list = {
+        item_bg_img = resource.load_image("img_event_row_bg.png")
+    },
 }
 
 return {
