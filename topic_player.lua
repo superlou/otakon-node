@@ -23,6 +23,10 @@ function TopicPlayer:set_topics_from_config(config)
         return topic.device == "" or topic.device == serial_num
     end)
 
+    filter_inplace(config, function(topic)
+        return topic.disabled == nil or topic.disabled == false
+    end)
+
     self.topic_configs = config
 end
 

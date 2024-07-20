@@ -58,6 +58,11 @@
                 "title": "Device",
                 "name": "device",
                 "type": "device"
+            }, {
+                "title": "Disabled",
+                "name": "disabled",
+                "type": "boolean",
+                "hint": "Hide a topic without deleting it"
             }]
         },
         {
@@ -87,6 +92,11 @@
                 "title": "Device",
                 "name": "device",
                 "type": "device"
+            }, {
+                "title": "Disabled",
+                "name": "disabled",
+                "type": "boolean",
+                "hint": "Hide a topic without deleting it"
             }]
         },
         {
