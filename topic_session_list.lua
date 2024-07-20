@@ -22,14 +22,7 @@ function SessionListTopic:initialize(w, h, style, duration, heading, text, media
     self.text_color = {hex2rgb(self.style.text.color)}
     self.font_size = 36
 
-    if media.filename ~= "img_no_media.png" and media.asset_name then
-        self.background = resource.load_image(media.asset_name)
-    end
-
-    if style.player_bg_mask then
-        self.mask = resource.load_image(style.player_bg_mask)
-    end
-
+    self:use_background_media(media, style.player_bg_mask)
     self.alpha = 0
     tw:tween(self, "alpha", 0, 1, 0.5)
 
@@ -109,16 +102,7 @@ end
 
 function SessionListTopic:draw()
     local r, g, b = unpack(self.text_color)
-
-    if self.background then
-        if self.mask then
-            mask_shader:use {mask = self.mask, alpha = self.alpha}
-        end
-        self.background:draw(0, 0, self.w, self.h, self.alpha)
-        if self.mask then
-            mask_shader:deactivate()
-        end
-    end
+    self:draw_background_media(self.alpha)
 
     offset(self.w / 2, self.style.heading_y, function()
         self.heading:draw()

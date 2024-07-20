@@ -34,7 +34,14 @@
         "device":"",
         "duration": 5,
         "heading":"Today",
-        "media": {},
+        "media": {
+            "asset_id": 1245,
+            "asset_name":"test-asset-230fa9420ff9c02da9320-street.png",
+            "filename":"street.png",
+            "metadata":{"format": "png", "height": 964, "width": 1280},
+            "tags":[],
+            "type":"image"
+        },
         "message":"!session-brief\ndata:data_sessions_all_day.json"
     }, {
         "device":"",
