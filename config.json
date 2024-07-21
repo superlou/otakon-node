@@ -42,7 +42,8 @@
             "tags":[],
             "type":"image"
         },
-        "message":"!session-brief\ndata:data_sessions_all_day.json"
+        "message":"!session-brief\ndata:data_sessions_all_day.json",
+        "disabled": false
     }, {
         "device":"",
         "duration":5,
@@ -53,7 +54,8 @@
             "filename":"example_autograph.png",
             "metadata":{"format":"png", "height":964, "width":694}
         },
-        "message":""
+        "message":"",
+        "disabled": false
     }, {
         "device":"",
         "duration":5,
@@ -64,7 +66,8 @@
             "filename":"example_autograph2.png",
             "metadata":{"format":"png", "height":964, "width":694}
         },
-        "message":""
+        "message":"",
+        "disabled": false
     }],
     "right_topic_player": [{
         "device": "",
@@ -78,13 +81,15 @@
             "tags":[],
             "type":"image"
         },
-        "message": "!session-list\ndata:data_sessions_now.json"
+        "message": "!session-list\ndata:data_sessions_now.json",
+        "disabled": false
     }, {
         "device": "",
         "duration": 5,
         "heading": "Starting Soon",
         "media": {},
-        "message": "!session-list\ndata:data_sessions_soon.json"
+        "message": "!session-list\ndata:data_sessions_soon.json",
+        "disabled": false
     }, {
         "device":"",
         "duration": 5,
@@ -95,12 +100,14 @@
             "filename":"example_event.png",
             "metadata":{"format":"png", "height":964, "width":1332}
         },
-        "message":""
+        "message":"",
+        "disabled": false
     }, {
         "device":"",
         "duration": 5,
         "heading":"Simple Text Info",
         "media": {"filename":"img_no_media.png"},
-        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "disabled": false
     }]
 }
