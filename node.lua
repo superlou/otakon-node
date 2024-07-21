@@ -38,8 +38,8 @@ util.data_mapper {
 json_watch("config.json", function(config)
     ticker:set_speed(config.ticker_speed)
     ticker:set_msgs_from_config(config)
-    topic_sidebar:set_topics_from_config(config["left_topic_player"])
-    topic_main:set_topics_from_config(config["right_topic_player"])
+    topic_sidebar:set_topics_from_config(config["sidebar_topic_player"])
+    topic_main:set_topics_from_config(config["main_topic_player"])
 end)
 
 local t = 0

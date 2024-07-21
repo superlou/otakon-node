@@ -30,7 +30,7 @@
     "guidebook_api_key": "",
     "guidebook_guide_id": "191557",
     "ticker_speed": 2.0,
-    "left_topic_player":[{
+    "sidebar_topic_player":[{
         "device":"",
         "duration": 5,
         "heading":"Today",
@@ -69,7 +69,7 @@
         "message":"",
         "disabled": false
     }],
-    "right_topic_player": [{
+    "main_topic_player": [{
         "device": "",
         "duration": 5,
         "heading": "Happening Now",

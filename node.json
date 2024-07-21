@@ -32,8 +32,8 @@
             "type": "section"
         },        
         {
-            "title": "Left Topic Player",
-            "name": "left_topic_player",
+            "title": "Main Topic Player",
+            "name": "main_topic_player",
             "type": "list",
             "itemname": "Topic",
             "items": [{
@@ -66,8 +66,8 @@
             }]
         },
         {
-            "title": "Right Topic Player",
-            "name": "right_topic_player",
+            "title": "Sidebar Topic Player",
+            "name": "sidebar_topic_player",
             "type": "list",
             "itemname": "Topic",
             "items": [{
