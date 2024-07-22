@@ -45,10 +45,13 @@ function SessionListTopic:initialize(w, h, style, duration, heading, text, media
 
     if #self.sessions_by_page == 0 then
         -- If nothing to show, wait for 1 page duration
-        tw:timer(duration):on_done(function()
-            tw:tween(self, "alpha", 1, 0, 0.5)
+        tw:timer(self.duration):on_done(function()
             self.heading:start_exit()
-            tw:timer(0.5):on_done(function() self:set_done() end)
+        end):then_after(0.5, function()
+            tw:tween(self, "alpha", 1, 0, 0.5)
+            self:set_exiting()
+        end):then_after(0.5, function()
+            self:set_done()
         end)
     else
         self:load_page()
@@ -90,12 +93,12 @@ function SessionListTopic:load_page()
     else
         -- No more session pages to show
         tw:timer(self.duration):on_done(function()
-            tw:tween(self, "alpha", 1, 0, 0.5)
             self.heading:start_exit()
-        end)
-
-        tw:timer(self.duration + 0.5):on_done(function()
-            self:set_done()        
+        end):then_after(0.5, function()
+            tw:tween(self, "alpha", 1, 0, 0.5)
+            self:set_exiting()
+        end):then_after(0.5, function()
+            self:set_done()
         end)
     end
 end

@@ -20,26 +20,30 @@ function InfoTopic:initialize(w, h, style, duration, heading, text, media)
     self.margin = self.style.margin
     self.content_w = self.w - self.margin[2] - self.margin[4]
     self.lines = wrap_text(self.text, self.style.text.font, self.font_size, self.content_w)
-    self.alpha = 0
+    self.bg_alpha = 0
+    self.text_alpha = 0
     self.y_offset = 0
 
     self.heading = Heading(heading, style.heading)
 
-    tw:tween(self, "alpha", 0, 1, 0.5)
+    tw:tween(self, "bg_alpha", 0, 1, 0.5)
+    tw:tween(self, "text_alpha", 0, 1, 0.5)
     tw:tween(self, "y_offset", 20, 0, 0.5)
 
-    tw:tween(self, "alpha", 1, 0, 0.5):delay(duration):on_done(function()
-        self:set_done()
-    end)
-
-    tw:timer(duration):on_done(function()
+    tw:timer(self.duration):on_done(function()
         self.heading:start_exit()
+        tw:tween(self, "text_alpha", 1, 0, 0.5)
+    end):then_after(0.5, function()
+        tw:tween(self, "bg_alpha", 1, 0, 0.5)
+        self:set_exiting()
+    end):then_after(0.5, function()
+        self:set_done()
     end)
 end
 
 function InfoTopic:draw()
     local r, g, b = unpack(self.text_color)
-    self:draw_background_media(self.alpha)
+    self:draw_background_media(self.bg_alpha)
 
     offset(self.w / 2, self.style.heading_y, function()
         self.heading:draw()
@@ -49,7 +53,7 @@ function InfoTopic:draw()
         self.style.text.font:write(
             self.margin[4], i * self.font_size * 1.5 - self.y_offset + self.style.message_y,
             line, self.font_size,
-            r, g, b, self.alpha
+            r, g, b, self.text_alpha
         )
     end
 end

@@ -44,18 +44,27 @@ function Tween:initialize(target_obj, target_property, start_val, finish_val, du
     self.t1 = duration
     self.v0 = start_val
     self.v1 = finish_val
+    self.original_delay = 0
     self.remaining_delay = 0
     self.done = false
     self.done_fn = function() end
 end
 
 function Tween:delay(delay)
+    self.original_delay = delay
     self.remaining_delay = delay
     return self
 end
 
 function Tween:on_done(fn)
     self.done_fn = fn
+    return self
+end
+
+function Tween:then_after(delay, fn)
+    local tween = tweener:timer(self.original_delay + delay)
+    tween:on_done(fn)
+    return tween
 end
 
 function Tween:update(dt)

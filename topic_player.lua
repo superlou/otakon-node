@@ -13,6 +13,7 @@ function TopicPlayer:initialize(w, h, style, bg)
 
     self.topic_configs = {}
     self.active_topic = nil
+    self.next_topic = nil
     self.next_topic_id = 1
 end
 
@@ -37,18 +38,36 @@ function TopicPlayer:draw()
 
     if self.bg then self.bg:draw(0, 0, self.w, self.h) end
 
-    if self.active_topic == nil or self.active_topic:is_done() then
-        -- Reset if the next_topic_id is out of bounds
-        if self.next_topic_id > #self.topic_configs then
-            self.next_topic_id = 1
-        end
+    if self.active_topic == nil then
+        self.active_topic = self:build_next_topic()
+    end
 
-        self.active_topic = self:create_topic(self.topic_configs[self.next_topic_id])
-
-        self.next_topic_id = self.next_topic_id + 1
+    if self.active_topic:is_exiting() and self.next_topic == nil then
+        self.next_topic = self:build_next_topic()
+    elseif self.active_topic:is_done() and self.next_topic ~= nil then
+        self.active_topic = self.next_topic
+        self.next_topic = nil
+    elseif self.active_topic:is_done() and self.next_topic == nil then
+        self.active_topic = self:build_next_topic()
     end
 
     self.active_topic:draw()
+    if self.next_topic then
+        self.next_topic:draw()
+    end
+end
+
+function TopicPlayer:build_next_topic()
+    -- Reset if the next_topic_id is out of bounds
+    if self.next_topic_id > #self.topic_configs then
+        self.next_topic_id = 1
+    end
+
+    local topic = self:create_topic(self.topic_configs[self.next_topic_id])
+
+    self.next_topic_id = self.next_topic_id + 1
+    
+    return topic
 end
 
 function string:startswith(start)

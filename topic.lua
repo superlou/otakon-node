@@ -15,20 +15,39 @@ local mask_shader = resource.create_shader[[
     }
 ]]
 
+local Lifecycle = {
+    RUNNING = 1,
+    EXITING = 2,
+    DONE = 3,
+}
+
 function Topic:initialize(w, h, style, duration)
     self.w, self.h = w, h
     self.style = style
     self.duration = duration
-    self.done = false
+    self.lifecycle = Lifecycle.RUNNING
 end
 
 function Topic:set_done()
-    self.done = true
+    self.lifecycle = Lifecycle.DONE
+end
+
+function Topic:set_exiting()
+    self.lifecycle = Lifecycle.EXITING
+end
+
+function Topic:is_running()
+    return self.lifecycle == Lifecycle.RUNNING
+end
+
+function Topic:is_exiting()
+    return self.lifecycle == Lifecycle.EXITING
 end
 
 function Topic:is_done()
-    return self.done
+    return self.lifecycle == Lifecycle.DONE
 end
+
 
 function Topic:use_background_media(media, mask_filename)
     if media.filename ~= "img_no_media.png" and media.asset_name then
