@@ -21,11 +21,23 @@ local Lifecycle = {
     DONE = 3,
 }
 
-function Topic:initialize(w, h, style, duration)
+function Topic:initialize(player, w, h, style, duration)
+    self.player = player
     self.w, self.h = w, h
     self.style = style
     self.duration = duration
     self.lifecycle = Lifecycle.RUNNING
+end
+
+function Topic:next_topic_has_bg()
+    local next_topic_config = self.player:peak_next_topic_config()
+
+    if next_topic_config == nil then
+        return false
+    end
+
+    return next_topic_config.media.filename ~= "img_no_media.png" 
+           and next_topic_config.media.asset_name
 end
 
 function Topic:set_done()

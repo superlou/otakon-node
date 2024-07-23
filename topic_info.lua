@@ -8,8 +8,8 @@ local offset = require "offset"
 
 local InfoTopic = class("InfoTopic", Topic)
 
-function InfoTopic:initialize(w, h, style, duration, heading, text, media)
-    Topic.initialize(self, w, h, style, duration)
+function InfoTopic:initialize(player, w, h, style, duration, heading, text, media)
+    Topic.initialize(self, player, w, h, style, duration)
     self.text = text
     self.text_color = {hex2rgb(self.style.text.color)}
     self.font_size = 40
@@ -34,7 +34,7 @@ function InfoTopic:initialize(w, h, style, duration, heading, text, media)
         self.heading:start_exit()
         tw:tween(self, "text_alpha", 1, 0, 0.5)
     end):then_after(0.5, function()
-        tw:tween(self, "bg_alpha", 1, 0, 0.5)
+        if not self:next_topic_has_bg() then tw:tween(self, "bg_alpha", 1, 0, 0.5) end
         self:set_exiting()
     end):then_after(0.5, function()
         self:set_done()

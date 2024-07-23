@@ -15,8 +15,8 @@ local white_img = resource.create_colored_texture(1, 1, 1, 1)
 local green_img = create_color_resource_hex("#2fc480")
 local red_img = create_color_resource_hex("#d34848")
 
-function SessionListTopic:initialize(w, h, style, duration, heading, text, media)
-    Topic.initialize(self, w, h, style, duration)
+function SessionListTopic:initialize(player, w, h, style, duration, heading, text, media)
+    Topic.initialize(self, player, w, h, style, duration)
     self.heading = heading
     self.text = text
     self.text_color = {hex2rgb(self.style.text.color)}
@@ -48,7 +48,7 @@ function SessionListTopic:initialize(w, h, style, duration, heading, text, media
         tw:timer(self.duration):on_done(function()
             self.heading:start_exit()
         end):then_after(0.5, function()
-            tw:tween(self, "alpha", 1, 0, 0.5)
+            if not self:next_topic_has_bg() then tw:tween(self, "alpha", 1, 0, 0.5) end
             self:set_exiting()
         end):then_after(0.5, function()
             self:set_done()
@@ -95,7 +95,7 @@ function SessionListTopic:load_page()
         tw:timer(self.duration):on_done(function()
             self.heading:start_exit()
         end):then_after(0.5, function()
-            tw:tween(self, "alpha", 1, 0, 0.5)
+            if not self:next_topic_has_bg() then tw:tween(self, "alpha", 1, 0, 0.5) end
             self:set_exiting()
         end):then_after(0.5, function()
             self:set_done()

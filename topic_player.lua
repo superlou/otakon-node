@@ -57,6 +57,16 @@ function TopicPlayer:draw()
     end
 end
 
+function TopicPlayer:peak_next_topic_config()
+    local next_topic_id = self.next_topic_id
+
+    if next_topic_id > #self.topic_configs then
+        next_topic_id = 1
+    end
+
+    return self.topic_configs[next_topic_id]
+end
+
 function TopicPlayer:build_next_topic()
     -- Reset if the next_topic_id is out of bounds
     if self.next_topic_id > #self.topic_configs then
@@ -79,6 +89,7 @@ function TopicPlayer:create_topic(topic_config)
 
     if msg:startswith("!session-list") then
         return SessionListTopic:new(
+            self,
             self.w, self.h, self.style,
             topic_config.duration,
             topic_config.heading,
@@ -87,6 +98,7 @@ function TopicPlayer:create_topic(topic_config)
         )
     elseif msg:startswith("!session-brief") then
         return SessionBriefTopic:new(
+            self,
             self.w, self.h, self.style,
             topic_config.duration,
             topic_config.heading,
@@ -96,11 +108,14 @@ function TopicPlayer:create_topic(topic_config)
     end
 
     -- Otherwise, make an InfoTopic
-    return InfoTopic:new(self.w, self.h, self.style,
-                         topic_config.duration,
-                         topic_config.heading,
-                         topic_config.message,
-                         topic_config.media)
+    return InfoTopic:new(
+        self,
+        self.w, self.h, self.style,
+        topic_config.duration,
+        topic_config.heading,
+        topic_config.message,
+        topic_config.media
+    )
 end
 
 return TopicPlayer

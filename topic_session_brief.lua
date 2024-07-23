@@ -9,8 +9,8 @@ require "file_util"
 local SessionBriefTopic = class("SessionBriefTopic", Topic)
 local SessionBriefItem = class("SessionBriefItem")
 
-function SessionBriefTopic:initialize(w, h, style, duration, heading, text, media)
-    Topic.initialize(self, w, h, style, duration)
+function SessionBriefTopic:initialize(player, w, h, style, duration, heading, text, media)
+    Topic.initialize(self, player, w, h, style, duration)
     self.heading = heading
     self.text = text
     self.text_color = {hex2rgb(self.style.text.color)}
@@ -42,7 +42,7 @@ function SessionBriefTopic:initialize(w, h, style, duration, heading, text, medi
         tw:timer(self.duration):on_done(function()
             self.heading:start_exit()
         end):then_after(0.5, function()
-            tw:tween(self, "alpha", 1, 0, 0.5)
+            if not self:next_topic_has_bg() then tw:tween(self, "alpha", 1, 0, 0.5) end
             self:set_exiting()
         end):then_after(0.5, function()
             self:set_done()
@@ -81,7 +81,7 @@ function SessionBriefTopic:load_page()
         tw:timer(self.duration):on_done(function()
             self.heading:start_exit()
         end):then_after(0.5, function()
-            tw:tween(self, "alpha", 1, 0, 0.5)
+            if not self:next_topic_has_bg() then tw:tween(self, "alpha", 1, 0, 0.5) end
             self:set_exiting()
         end):then_after(0.5, function()
             self:set_done()
