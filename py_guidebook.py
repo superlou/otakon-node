@@ -64,10 +64,32 @@ class Guidebook:
         
         return locations
 
+    def get_schedule_tracks(self, guide_id=None):
+        url = "https://builder.guidebook.com/open-api/v1.1/schedule-tracks/"
+        params = {
+            "guide": guide_id
+        }
+
+        schedule_tracks = []
+        response = self.get_json(url, params)
+        schedule_tracks += response["results"]
+        next_url = response["next"]
+
+        while next_url:
+            response = self.get_json(next_url)
+            schedule_tracks += response["results"]
+            next_url = response["next"]
+        
+        return schedule_tracks
+
 
 def build_session_list(guidebook, guide_id, local_tz):
     locations = guidebook.get_locations(guide_id)
     location_map = {location["id"]: location["name"] for location in locations}
+
+    schedule_tracks = guidebook.get_schedule_tracks(guide_id)
+    schedule_track_map = {track["id"]: track["name"] for track in schedule_tracks}
+
     sessions = guidebook.get_sessions(guide_id)
     
     # All times from Guidebook are in UTC and get converted to local time
@@ -80,6 +102,7 @@ def build_session_list(guidebook, guide_id, local_tz):
         "start": prepare_timestamp(session["start_time"]),
         "finish": prepare_timestamp(session["end_time"]),
         "locations": [location_map[loc_id] for loc_id in session["locations"]],
+        "tracks": [schedule_track_map[track_id] for track_id in session["schedule_tracks"]]
     } for session in sessions]
 
     return sessions
@@ -231,7 +254,8 @@ def save_sessions_for_topic_list(sessions, filename):
         "is_before_start": session["is_before_start"],
         "is_after_finish": session["is_after_finish"],
         "name": session["name"],
-        "locations": session["locations"],        
+        "locations": session["locations"],
+        "tracks": session["tracks"],
     } for session in sessions]
 
     with open(filename, "w") as f:
