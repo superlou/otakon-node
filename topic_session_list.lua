@@ -3,6 +3,7 @@ local Topic = require "topic"
 local tw = require "tween"
 local json = require "json"
 local Pager = require "pager"
+local sessions_filter = require "sessions_filter"
 require "text_util"
 require "color_util"
 require "file_util"
@@ -32,12 +33,9 @@ function SessionListTopic:initialize(player, w, h, style, duration, heading, tex
     local session_data_text = file_load_safe(data_filename, "[]")
     self.sessions_data = json.decode(session_data_text)
 
-    local filter_location = text:match("filter%-location:([%w_. ]+)")
-    if filter_location then
-        filter_inplace(self.sessions_data, function(session)
-            return array_contains(session.locations, filter_location)
-        end)
-    end
+    local filter_location = text:match("filter%-location:([%w_.,() ]+)")
+    local filter_track = text:match("filter%-track:([%w_.,() ]+)")
+    sessions_filter(self.sessions_data, filter_location, filter_track)
 
     self.sessions_per_page = 6  -- todo This should be based on height and session size
     self.sessions_by_page = split_every_n(self.sessions_data, self.sessions_per_page)

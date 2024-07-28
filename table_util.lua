@@ -39,3 +39,19 @@ function array_contains(array, value)
     end
     return false
 end
+
+function string_split(str, delimiter)
+    return string.gmatch(str, "[^,]+")
+end
+
+function string_strip(str)
+    return string.gsub(str, '^%s*(.-)%s*$', '%1')
+end
+
+function iter_to_table(...)
+    local arr = {}
+    for v in ... do
+      arr[#arr + 1] = v
+    end
+    return arr
+  end
