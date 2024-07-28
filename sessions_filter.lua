@@ -1,7 +1,6 @@
 -- Filter a table of sessions in place
 function sessions_filter(sessions, location_str, track_str)
     if location_str then
-        print(location_str)
         filter_inplace(sessions, function(session)
             for location in string_split(location_str, ",") do
                 if array_contains(session.locations, string_strip(location)) then
