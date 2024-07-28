@@ -48,6 +48,14 @@ function string_strip(str)
     return string.gsub(str, '^%s*(.-)%s*$', '%1')
 end
 
+function string_starts_with(str, start)
+    return str:sub(1, #start) == start
+end
+
+function string_ends_with(str, ending)
+    return ending == "" or str:sub(-#ending) == ending
+end
+
 function iter_to_table(...)
     local arr = {}
     for v in ... do

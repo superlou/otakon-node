@@ -78,7 +78,7 @@ function test_sessions_filter_location()
         {locations={"room d", "room e"}, tracks={"live"}},
     }
 
-    local result = sessions_filter(shallow_copy(sessions), "room a", nil)
+    local result = sessions_filter(shallow_copy(sessions), "room a2", nil)
     assert_equal(#result, 1)
     local result = sessions_filter(shallow_copy(sessions), "room b", nil)
     assert_equal(#result, 1)
