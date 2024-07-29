@@ -39,7 +39,7 @@
             "default": 3.5
         },
         {
-            "title": "Is Soon threshold (hours)",
+            "title": "Is-soon threshold (hours)",
             "name": "is_soon_threshold",
             "hint": "How far in the future to consider a session as starting \"soon\"",
             "type": "float",

@@ -140,7 +140,8 @@ checks = {
     "cache": UNKNOWN,
 }
 
-def update_guidebook_data(node, api_key, guide_id, now, local_tz, all_day_threshold,
+def update_guidebook_data(node, api_key, guide_id, now, local_tz,
+                          all_day_threshold, is_soon_threshold,
                           scratch_dir):
     global checks
     checks = {
@@ -170,7 +171,7 @@ def update_guidebook_data(node, api_key, guide_id, now, local_tz, all_day_thresh
     try:
         checks["process"] = IN_PROGRESS
         send_update(node, True, checks, "Processing Guidebook data")
-        add_session_metadata(sessions, now)
+        add_session_metadata(sessions, now, is_soon_threshold)
         time.sleep(0.1)
         checks["process"] = OK
         send_update(node, True, checks, "Done processing Guidebook data")
@@ -229,7 +230,7 @@ def completed_fraction(now, start, duration):
         return 1.0    
 
 
-def add_session_metadata(sessions, now):
+def add_session_metadata(sessions, now, is_soon_timedelta):
     """ Add information that is used repeatedly"""
     for session in sessions:
         start = session["start"]
@@ -239,7 +240,7 @@ def add_session_metadata(sessions, now):
         session["is_open"] = now >= start and now <= finish
         session["is_before_start"] = now < start
         session["is_after_finish"] = now > finish
-        session["is_soon"] = start > now and start <= (now + timedelta(hours=1))
+        session["is_soon"] = start > now and start <= (now + is_soon_timedelta)
         session["starts_today"] = starts_today(now, start)
 
 

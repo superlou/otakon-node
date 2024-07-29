@@ -30,6 +30,8 @@
     "guidebook_api_key": "",
     "guidebook_guide_id": "191557",
     "ticker_speed": 2.0,
+    "all_day_threshold": 3.5,
+    "is_soon_threshold": 1.0,
     "sidebar_topic_player":[{
         "device":"",
         "duration": 5,
