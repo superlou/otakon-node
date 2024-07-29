@@ -27,21 +27,23 @@
             "type": "float"
         },
         {
+            "title": "Session Configuration",
+            "intro": "Configuration options for session analysis.",
+            "type": "section"
+        },        
+        {
             "title": "All-day threshold (hours)",
             "name": "all_day_threshold",
-            "hint": "Sessions longer than this threshold are considered \"all day\"", 
+            "hint": "Sessions longer than this threshold are considered \"all day\"",
+            "type": "float",
             "default": 3.5
         },
         {
             "title": "Is Soon threshold (hours)",
             "name": "is_soon_threshold",
             "hint": "How far in the future to consider a session as starting \"soon\"",
+            "type": "float",
             "default": 1.0
-        },
-        {
-            "title": "Session Configuration",
-            "intro": "Configuration options for session analysis.",
-            "type": "section"
         },
         {
             "title": "Topic Players",
