@@ -26,8 +26,8 @@ function SessionBriefTopic:initialize(player, w, h, style, duration, heading, te
     local session_data_text = file_load_safe(data_filename, "[]")
     self.sessions_data = json.decode(session_data_text)
 
-    local filter_location = text:match("filter%-location:([%w_.,() ]+)")
-    local filter_track = text:match("filter%-track:([%w_.,() ]+)")
+    local filter_location = text:match("filter%-location:([^\n]+)")
+    local filter_track = text:match("filter%-track:([^\n]+)")
     sessions_filter(self.sessions_data, filter_location, filter_track)
 
     self.sessions_per_page = 6  -- todo This should be based on height and session size
