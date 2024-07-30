@@ -20,12 +20,16 @@ local sidebar_style = {
         font_bold = font_body_bold,
         color = "333195",
     },
-    margin = {70, 70, 70, 70},
+    margin = {70, 50, 70, 50},
     heading_y = 80,
     message_y = 160,
     session_list = {
-        item_bg_img = nil
+        item_bg_img = resource.create_colored_texture(1, 1, 1, 1.0),
+        compact = true
     },
+    session_brief = {
+        item_bg_img = resource.create_colored_texture(1, 1, 1, 1.0)
+    }
 }
 
 local main_style = {
@@ -44,12 +48,16 @@ local main_style = {
         color = "ffffff",
     },
     player_bg_mask = nil,
-    margin = {80, 50, 80, 50},
+    margin = {70, 50, 70, 50},
     heading_y = 80,
     message_y = 160,
     session_list = {
-        item_bg_img = resource.load_image("img_event_row_bg.png")
+        item_bg_img = resource.load_image("img_event_row_bg.png"),
+        compact = false
     },
+    session_brief = {
+        item_bg_img = nil
+    }
 }
 
 return {

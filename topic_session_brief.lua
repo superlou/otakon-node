@@ -52,14 +52,14 @@ end
 function SessionBriefTopic:load_page()
     local sessions = table.remove(self.sessions_by_page, 1)
     self.session_items = {}
-
+    
     for i, session in ipairs(sessions) do
         local item = SessionBriefItem:new(
             session.name, session.locations,
             session.start_hhmm, session.start_ampm,
             session.finish_hhmm, session.finish_ampm,
             session.is_before_start, session.is_open, session.is_after_finish,
-            self.w, 200,
+            self.w, 100,
             self.duration,
             (i - 1) * 0.1,
             self.style
@@ -119,6 +119,7 @@ function SessionBriefItem:initialize(name, locations,
     self.w, self.h = w, h
     self.duration = duration
     self.style = style
+    self.bg_img = self.style.session_brief.item_bg_img
 
     self.start = self.start_hhmm .. string.sub(self.start_ampm, 1, 1)
     self.finish = self.finish_hhmm .. string.sub(self.finish_ampm, 1, 1)
@@ -165,6 +166,10 @@ local img_none = resource.load_image("img_no_media.png")
 
 function SessionBriefItem:draw()
     local r, g, b = unpack(self.text_color)
+
+    if self.bg_img then
+        self.bg_img:draw(20, -10, self.w - 20, 0 + self.h, self.alpha)
+    end
 
     local status_img = img_none
     local status_color = {1, 1, 1}

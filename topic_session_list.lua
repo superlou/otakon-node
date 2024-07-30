@@ -135,6 +135,7 @@ function SessionListItem:initialize(name, locations, start_hhmm, start_ampm,
     self.style = style
     self.margin = self.style.margin
     self.bg_img = self.style.session_list.item_bg_img
+    self.compact = self.style.session_list.compact
 
     for i, location in ipairs(self.locations) do
         self.locations[i] = string.upper(location)
@@ -146,9 +147,15 @@ function SessionListItem:initialize(name, locations, start_hhmm, start_ampm,
     self.font_bold = self.style.text.font_bold
 
     -- Calculations to right align time text
-    self.date_w = 104
-    self.start_hhmm_x = self.margin[4] + self.date_w - self.font:width(self.start_hhmm, self.font_size)
-    self.start_ampm_x = self.margin[4] + self.date_w - self.font:width(self.start_ampm, self.font_size * 0.8)
+    if self.compact then
+        self.date_w = 50
+        self.start_hhmm_x = self.margin[4] + self.date_w - self.font:width(self.start_hhmm, self.font_size * 0.55)
+        self.start_ampm_x = self.margin[4] + self.date_w - self.font:width(self.start_ampm, self.font_size * 0.55)
+    else
+        self.date_w = 100
+        self.start_hhmm_x = self.margin[4] + self.date_w - self.font:width(self.start_hhmm, self.font_size)
+        self.start_ampm_x = self.margin[4] + self.date_w - self.font:width(self.start_ampm, self.font_size * 0.8)
+    end
 
     self.alpha = 0
 
@@ -159,8 +166,19 @@ function SessionListItem:initialize(name, locations, start_hhmm, start_ampm,
 end
 
 function SessionListItem:draw()
+    if self.compact then
+        self:draw_compact()
+    else
+        self:draw_normal()
+    end
+end
+
+function SessionListItem:draw_normal()
     if self.bg_img then
-        self.bg_img:draw(35, -15, 35 + 1210, -15 + 100, self.alpha)
+        self.bg_img:draw(
+            self.margin[2] / 2, -15,
+            self.w - self.margin[4] / 2, -15 + 100,
+        self.alpha)
     end
 
     local r, g, b = unpack(self.text_color)
@@ -210,5 +228,41 @@ function SessionListItem:draw_time()
     white_img:draw(self.margin[4], bar_y, self.margin[4] + bar_w, bar_y + bar_h, self.alpha)
     fill_img:draw(self.margin[4], bar_y, self.margin[4] + bar_w * self.completed_fraction, bar_y + bar_h, self.alpha)
 end
+
+function SessionListItem:draw_compact()
+    if self.bg_img then
+        self.bg_img:draw(
+            self.margin[2] / 2, -15,
+            self.w - self.margin[4] / 2, -15 + 100,
+        self.alpha)
+    end
+
+    local r, g, b = unpack(self.text_color)
+
+    -- self:draw_time()
+
+    local name_x = self.margin[4]
+    local name_w = self.w - name_x - self.margin[2]
+
+    draw_text_in_window(
+        self.name,
+        name_x, 0, name_w,
+        self.font_size, self.font_size, self.font,
+        r, g, b, self.alpha, 0
+    )
+
+    self.font:write(
+        self.start_hhmm_x, 50, self.start_hhmm, self.font_size * 0.55,
+        r, g, b, self.alpha
+    )
+
+    if #self.locations > 0 then
+        self.font_bold:write(
+            self.margin[4] + self.date_w + 14, 50, self.locations[1], self.font_size * 0.55,
+            r, g, b, self.alpha
+        )
+    end
+end
+
 
 return SessionListTopic
