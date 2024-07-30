@@ -42,13 +42,13 @@
             "title": "Session Rename",
             "name": "session_rename",
             "hint": "An \"id,new name\" pair per line to rename sessions",
-            "type": "string"
+            "type": "text"
         },
         {
             "title": "Location Rename",
             "name": "location_rename",
             "hint": "An \"id,new name\" pair per line to rename locations",
-            "type": "string"
+            "type": "text"
         },
         {
             "title": "Is-soon threshold (hours)",
