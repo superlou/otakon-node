@@ -83,7 +83,7 @@ class Guidebook:
         return schedule_tracks
 
 
-def build_session_list(guidebook, guide_id, local_tz):
+def build_session_list(guidebook, guide_id, local_tz, session_rename_map, location_rename_map):
     locations = guidebook.get_locations(guide_id)
     location_map = {location["id"]: location["name"] for location in locations}
 
@@ -98,10 +98,12 @@ def build_session_list(guidebook, guide_id, local_tz):
         return utc.localize(timestamp).astimezone(local_tz)
 
     sessions = [{
-        "name": session["name"],
+        "id": session["id"],
+        "name": session_rename_map.get(session["id"], session["name"]),
         "start": prepare_timestamp(session["start_time"]),
         "finish": prepare_timestamp(session["end_time"]),
-        "locations": [location_map[loc_id] for loc_id in session["locations"]],
+        "locations": [location_rename_map.get(loc_id, location_map[loc_id]) 
+                      for loc_id in session["locations"]],
         "tracks": [schedule_track_map[track_id] for track_id in session["schedule_tracks"]]
     } for session in sessions]
 
@@ -140,9 +142,27 @@ checks = {
     "cache": UNKNOWN,
 }
 
+def rename_field_to_dict(field):
+    lines = field.split("\n")
+    m = {}
+
+    for line in lines:
+        parts = line.split(",")
+        if len(parts) >= 2:
+            try:
+                id = int(parts[0].strip())
+                name = parts[1]
+                m[id] = name.strip()
+            except Exception as exc:
+                print(exc)
+
+    return m
+
+
 def update_guidebook_data(node, api_key, guide_id, now, local_tz,
                           all_day_threshold, is_soon_threshold,
-                          scratch_dir):
+                          scratch_dir,
+                          session_rename_field, location_rename_field):
     global checks
     checks = {
         "fetch": UNKNOWN,
@@ -151,13 +171,16 @@ def update_guidebook_data(node, api_key, guide_id, now, local_tz,
         "cache": UNKNOWN,
     }
 
+    session_rename_map = rename_field_to_dict(session_rename_field)
+    location_rename_map = rename_field_to_dict(location_rename_field)
+
     # Attempt to get data from Guidebook, and fall back to saved data
     # if not successful.
     try:
         checks["fetch"] = IN_PROGRESS
         send_update(node, True, checks, "Fetching from Guidebook")
         guidebook = Guidebook(api_key)
-        sessions = build_session_list(guidebook, guide_id, local_tz)
+        sessions = build_session_list(guidebook, guide_id, local_tz, session_rename_map, location_rename_map)
         checks["fetch"] = OK
         send_update(node, True, checks, "Fetched successfully")
     except Exception as e:
@@ -254,6 +277,7 @@ def save_sessions_for_topic_list(sessions, filename):
         "is_open": session["is_open"],
         "is_before_start": session["is_before_start"],
         "is_after_finish": session["is_after_finish"],
+        "id": session["id"],
         "name": session["name"],
         "locations": session["locations"],
         "tracks": session["tracks"],

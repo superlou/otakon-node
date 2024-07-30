@@ -51,7 +51,9 @@ def update_guidebook_thread():
                 config.metadata_timezone,
                 datetime.timedelta(hours=config.all_day_threshold),
                 datetime.timedelta(hours=config.is_soon_threshold),
-                os.environ["SCRATCH"]
+                os.environ["SCRATCH"],
+                config.session_rename,
+                config.location_rename
             )
         except Exception as e:
             send_update(node, False, guidebook_checks, "Unexpected failure", e)

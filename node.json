@@ -39,6 +39,18 @@
             "default": 3.5
         },
         {
+            "title": "Session Rename",
+            "name": "session_rename",
+            "hint": "An \"id,new name\" pair per line to rename sessions",
+            "type": "string"
+        },
+        {
+            "title": "Location Rename",
+            "name": "location_rename",
+            "hint": "An \"id,new name\" pair per line to rename locations",
+            "type": "string"
+        },
+        {
             "title": "Is-soon threshold (hours)",
             "name": "is_soon_threshold",
             "hint": "How far in the future to consider a session as starting \"soon\"",

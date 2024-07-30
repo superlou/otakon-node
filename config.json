@@ -32,6 +32,8 @@
     "ticker_speed": 2.0,
     "all_day_threshold": 3.5,
     "is_soon_threshold": 1.0,
+    "session_rename": "30409665,Street Fighter\n30409525,VIP Meet and Greet with Flow\n",
+    "location_rename": "4783251,Club Ota (Marriott M4)",
     "sidebar_topic_player":[{
         "device": "",
         "duration": 5,
