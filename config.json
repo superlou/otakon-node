@@ -37,20 +37,6 @@
     "sidebar_topic_player":[{
         "device": "",
         "duration": 5,
-        "heading": "Main Now",
-        "media": {
-            "asset_id": 1245,
-            "asset_name":"test-asset-230fa9420ff9c02da9320-street.png",
-            "filename":"street.png",
-            "metadata":{"format": "png", "height": 964, "width": 1280},
-            "tags":[],
-            "type":"image"
-        },
-        "message": "!session-list\ndata:data_sessions_now.json\nfilter-location:Main Events (WEWCC Level 3 Ballroom A/B)\n",
-        "disabled": false
-    }, {
-        "device": "",
-        "duration": 5,
         "heading": "Happening Now",
         "media": {
             "asset_id": 1245,
@@ -113,14 +99,14 @@
             "tags":[],
             "type":"image"
         },
-        "message": "!session-list\ndata:data_sessions_now.json\nfilter-location:Main Events (WEWCC Level 3 Ballroom A/B)",
+        "message": "!session-list\ndata:data_sessions_now.json\n",
         "disabled": false
     }, {
         "device": "",
         "duration": 5,
         "heading": "Starting Soon",
         "media": {},
-        "message": "!session-list\ndata:data_sessions_soon.json\nfilter-location:Main Events (WEWCC Level 3 Ballroom A/B)",
+        "message": "!session-list\ndata:data_sessions_soon.json\n",
         "disabled": false
     }, {
         "device":"",
