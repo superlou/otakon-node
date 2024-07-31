@@ -35,8 +35,6 @@ function SessionListTopic:initialize(player, w, h, style, duration, heading, tex
 
     local filter_location = text:match("filter%-location:([^\n]+)")
     local filter_track = text:match("filter%-track:([^\n]+)")
-    print(filter_location)
-    print(filter_track)
     sessions_filter(self.sessions_data, filter_location, filter_track)
 
     self.sessions_per_page = 6  -- todo This should be based on height and session size

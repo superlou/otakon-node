@@ -25,7 +25,7 @@ function dump(o)
     else
        return tostring(o)
     end
- end
+end
  
 -- https://stackoverflow.com/questions/20325332/how-to-check-if-two-tablesobjects-have-the-same-value-in-lua
 ---@param o1 any|table First object to compare

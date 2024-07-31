@@ -25,7 +25,7 @@
         {"ticker_text_msg":"Second ticker message"},
         {"ticker_text_msg":"Last ticker message"}
     ],
-    "debug_datetime": "2024-08-03T14:00:00",
+    "debug_datetime": "2024-08-02T12:30:00",
     "debug_time_accel": 1.0,
     "guidebook_api_key": "",
     "guidebook_guide_id": "191558",
@@ -35,6 +35,20 @@
     "session_rename": "30409665,Street Fighter\n30409525,VIP Meet and Greet with Flow\n",
     "location_rename": "4783251,Club Ota (Marriott M4)",
     "sidebar_topic_player":[{
+        "device": "",
+        "duration": 5,
+        "heading": "Main Now",
+        "media": {
+            "asset_id": 1245,
+            "asset_name":"test-asset-230fa9420ff9c02da9320-street.png",
+            "filename":"street.png",
+            "metadata":{"format": "png", "height": 964, "width": 1280},
+            "tags":[],
+            "type":"image"
+        },
+        "message": "!session-list\ndata:data_sessions_now.json\nfilter-location:Main Events (WEWCC Level 3 Ballroom A/B)\n",
+        "disabled": false
+    }, {
         "device": "",
         "duration": 5,
         "heading": "Happening Now",
@@ -99,14 +113,14 @@
             "tags":[],
             "type":"image"
         },
-        "message": "!session-list\ndata:data_sessions_now.json",
+        "message": "!session-list\ndata:data_sessions_now.json\nfilter-location:Main Events (WEWCC Level 3 Ballroom A/B)",
         "disabled": false
     }, {
         "device": "",
         "duration": 5,
         "heading": "Starting Soon",
         "media": {},
-        "message": "!session-list\ndata:data_sessions_soon.json",
+        "message": "!session-list\ndata:data_sessions_soon.json\nfilter-location:Main Events (WEWCC Level 3 Ballroom A/B)",
         "disabled": false
     }, {
         "device":"",
