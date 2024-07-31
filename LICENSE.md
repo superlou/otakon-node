@@ -1,8 +1,8 @@
 # License and Copyright
 
-Copyright © 2024, Louis Simons <lousimons@gmail.com>, Bert Schmidt, and Chet Jasinski.
+Copyright © 2024, Louis Simons <lousimons@gmail.com>, Bert Goldschmidt, and Chet Jasinski.
 
-This info-beamer node, service, and package is proprietary software, all rights reserved to Louis Simons, Bert Schmidt, and Chet Jasinski.
+This info-beamer node, service, and package is proprietary software, all rights reserved to Louis Simons, Bert Goldschmidt, and Chet Jasinski.
 
 Media such as images and fonts provided by Otakon®, Zenkaikon, Google® Fonts, or other parties are not covered by this license.
 
