@@ -290,7 +290,7 @@ def save_sessions_for_topic_list(sessions, filename):
 def write_sessions_now(sessions, now, max_duration):
     sessions_now = [
         s for s in sessions
-        if s["is_open"] and s["duration"] <= max_duration
+        if s["is_open"]
     ]
 
     save_sessions_for_topic_list(sessions_now, "data_sessions_now.json")
@@ -299,7 +299,7 @@ def write_sessions_now(sessions, now, max_duration):
 def write_sessions_soon(sessions, now, max_duration):
     sessions_soon = [
         s for s in sessions
-        if s["is_soon"] and s["duration"] <= max_duration
+        if s["is_soon"]
     ]
 
     save_sessions_for_topic_list(sessions_soon, "data_sessions_soon.json")
