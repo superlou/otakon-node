@@ -24,7 +24,7 @@ local sidebar_style = {
     heading_y = 80,
     message_y = 160,
     session_list = {
-        item_bg_img = resource.create_colored_texture(1, 1, 1, 1.0),
+        item_bg_img = resource.create_colored_texture(0, 0, 0, 1.0),
         compact = true
     },
     session_brief = {
