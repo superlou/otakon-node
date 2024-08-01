@@ -28,7 +28,7 @@ local sidebar_style = {
         compact = true
     },
     session_brief = {
-        item_bg_img = resource.create_colored_texture(3, 1, 2, 1.0)
+        item_bg_img = resource.create_colored_texture(1, 1, 1, 0.0)
     }
 }
 
