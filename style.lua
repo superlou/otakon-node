@@ -18,7 +18,7 @@ local sidebar_style = {
     text = {
         font = font_body,
         font_bold = font_body_bold,
-        color = "333195",
+        color = "ffffff",
     },
     margin = {70, 50, 70, 50},
     heading_y = 80,
