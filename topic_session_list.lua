@@ -37,7 +37,8 @@ function SessionListTopic:initialize(player, w, h, style, duration, heading, tex
     local filter_track = text:match("filter%-track:([^\n]+)")
     local filter_id = text:match("filter%-id:([^\n]+)")
     local exclude_id = text:match("exclude%-id:([^\n]+)")
-    sessions_filter(self.sessions_data, filter_location, filter_track, filter_id, exclude_id)
+    local exclude_closed = text:match("exclude%-closed:[ ]*true")
+    sessions_filter(self.sessions_data, filter_location, filter_track, filter_id, exclude_id, exclude_closed)
 
     self.sessions_per_page = 6  -- todo This should be based on height and session size
     self.sessions_by_page = split_every_n(self.sessions_data, self.sessions_per_page)
