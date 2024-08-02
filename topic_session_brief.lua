@@ -162,7 +162,7 @@ local opens_color = {hex2rgb("#d9b630")}
 local closed_color = {hex2rgb("#d34848")}
 
 local img_until = resource.load_image("img_until_dark.png")
-local img_closed = resource.load_image("img_closed_dark.png")
+local img_closed = resource.load_image("img_ended_dark.png")
 local img_opens = resource.load_image("img_opens_dark.png")
 local img_none = resource.load_image("img_no_media.png")
 
