@@ -70,7 +70,7 @@ function node.render()
 
     gl.pushMatrix()
     gl.translate(1723 + 89/2, 970 + 87/2)
-    gl.rotate(18 * math.sin(2 * 3.141 * 0.05 * t), 0, 0, 1)
+    gl.rotate(18 * math.sin(2 * 3.141 * 0.1 * t), 0, 0, 1)
     ticker_right_triangle:draw(-89/2, -89/2, 89/2, 87/2)
     gl.popMatrix()
 
