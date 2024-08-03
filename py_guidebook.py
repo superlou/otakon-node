@@ -31,7 +31,7 @@ class Guidebook:
         url = "https://builder.guidebook.com/open-api/v1.1/sessions/"
         params = {
             "guide": guide_id,
-            "ordering": ordering,
+            # "ordering": ordering,
         }
         
         sessions = []
@@ -44,6 +44,11 @@ class Guidebook:
             sessions += response["results"]
             next_url = response["next"]
         
+        # Guidebook cannot reliably sort by start_times. It will
+        # return duplicate IDs across different request/response pages
+        # and miss some sessions.
+        sessions.sort(key=lambda s: s["start_time"])
+
         return sessions
     
     def get_locations(self, guide_id=None):
