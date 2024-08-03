@@ -30,7 +30,8 @@ function SessionBriefTopic:initialize(player, w, h, style, duration, heading, te
     local filter_track = text:match("filter%-track:([^\n]+)")
     local filter_id = text:match("filter%-id:([^\n]+)")
     local exclude_id = text:match("exclude%-id:([^\n]+)")
-    sessions_filter(self.sessions_data, filter_location, filter_track, filter_id, exclude_id)
+    local exclude_closed = text:match("exclude%-closed:[ ]*(true)")
+    sessions_filter(self.sessions_data, filter_location, filter_track, filter_id, exclude_id, exclude_closed)
 
     self.sessions_per_page = 6  -- todo This should be based on height and session size
     self.sessions_by_page = split_every_n(self.sessions_data, self.sessions_per_page)
@@ -162,7 +163,7 @@ local opens_color = {hex2rgb("#d9b630")}
 local closed_color = {hex2rgb("#d34848")}
 
 local img_until = resource.load_image("img_until_dark.png")
-local img_closed = resource.load_image("img_closed_dark.png")
+local img_closed = resource.load_image("img_ended_dark.png")
 local img_opens = resource.load_image("img_opens_dark.png")
 local img_none = resource.load_image("img_no_media.png")
 
